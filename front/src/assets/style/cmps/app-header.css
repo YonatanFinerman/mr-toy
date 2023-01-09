@@ -1,0 +1,16 @@
+
+.app-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--clr1);
+    padding:1rem 1.6rem;
+}
+
+.app-header nav{
+    display: flex;
+    gap: 10px;
+}
+.app-header nav .active{
+    color: var(--clr2);
+}
