@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
+
 import { loadToys,removeToy } from "../store/actions/toy.action.js"
 import { toyService } from "../services/toy.service.js"
 
@@ -45,6 +46,8 @@ export function ToyIndex() {
         onLoadToys(filterBy)
 
     }
+
+    
 
        return <section>
                 <div>

@@ -1,5 +1,6 @@
-
+import {Select} from "react-select"
 import { useEffect, useRef, useState } from "react"
+import { Link } from "react-router-dom"
 import { toyService } from "../services/toy.service.js"
 import { utilService } from "../services/util.service.js"
 
@@ -22,8 +23,11 @@ export function ToyFilter({ onSetFilter }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        let { value, name: field, type } = target
+        let { value, name: field, type,checked } = target
         value = (type === 'number') ? +value : value
+        if(type === 'checkbox'){
+            value = checked
+        }     
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
 
@@ -46,9 +50,38 @@ export function ToyFilter({ onSetFilter }) {
                 ref={elInputRef}
             />
 
-            <div className="more-options">
-                <button>Add Toy</button>
+            <select 
+            name="sortBy"
+            onChange={handleChange}
+             id="">
+                <option value="">Sort Toys</option>
+                <option value="time">Latest Release</option>
+                <option value="name">Toy Name</option>
+                <option value="price">Lowest Price</option>
+            </select>
 
+            {/* <Select 
+            name="sortBy"
+            onChange={handleChange}
+            isMulti
+            className="multi-select"
+             id="">
+                <option value="">Sort 321oys</option>
+                <option value="">Latest dadRelease</option>
+                <option value="">Toy sdad</option>
+                <option value="">Lowedaasdst Price</option>
+            </Select> */}
+
+            <input 
+            type="checkbox"
+            name="inStock"
+            onChange={handleChange}
+            />
+
+            <div className="more-options">
+
+                
+                <Link to={`/toy/edit/`}><button className="add-Toy-btn">Add Toy</button></Link>
             <form onSubmit={onSubmitFilter} className='filter-form'>
             <input type="range"
                 title={"max price: "+filterByToEdit.maxPrice}
@@ -56,6 +89,7 @@ export function ToyFilter({ onSetFilter }) {
                 max={500}
                 id="maxPrice"
                 name="maxPrice"
+                value={filterByToEdit.maxPrice}
                 placeholder="By max price"
                 
                 onChange={handleChange}

@@ -49,6 +49,21 @@ _createToys()
 function query(filterBy = getDefaultFilter()) {
     return storageService.query(TOY_STORAGE_KEY)
         .then(toys => {
+            if (filterBy.sortBy === "time") {
+                toys = toys.sort((a, b) => b.createdtAt - a.createdtAt)
+            }
+            if (filterBy.sortBy === "price") {
+                toys = toys.sort((a, b) => a.price - b.price)
+            }
+
+            if (filterBy.sortBy === "name") {
+                toys = toys.sort((a, b) => a.name.localeCompare(b.name))
+            }
+            
+            if (filterBy.inStock) {
+               
+                toys = toys.filter(toy => toy.inStock)
+            }
             if (filterBy.txt) {
                 const regex = new RegExp(filterBy.txt, 'i')
                 toys = toys.filter(toy => regex.test(toy.name))
@@ -61,7 +76,7 @@ function query(filterBy = getDefaultFilter()) {
 }
 
 // function query() {
-    
+
 //     // return axios.get(BASE_URL).then(res => res.data)
 //     return storageService.query(TOY_STORAGE_KEY)
 
@@ -69,7 +84,7 @@ function query(filterBy = getDefaultFilter()) {
 // }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: 0 }
+    return { txt: '', maxPrice: 500, sortBy: '', inStock: false }
 }
 
 
@@ -77,6 +92,7 @@ function getDefaultFilter() {
 function getById(toyId) {
     return storageService.get(TOY_STORAGE_KEY, toyId)
 }
+
 function remove(toyId) {
     // return Promise.reject('Not now!')
     return storageService.remove(TOY_STORAGE_KEY, toyId)
@@ -86,7 +102,8 @@ function save(toy) {
         return storageService.put(TOY_STORAGE_KEY, toy)
     } else {
         // when switching to backend - remove the next line
-
+        
+        toy.createdtAt = Date.now() 
         return storageService.post(TOY_STORAGE_KEY, toy)
     }
 }
@@ -94,8 +111,12 @@ function save(toy) {
 
 function getEmptyToy() {
     return {
-        txt: '',
-        isDone: false,
+        name: '',
+        price: 0,
+        labels:[],
+        toyImgIdx: utilService.getRandomIntInclusive(1, 7),
+        inStock: true,
+        msgs:[]
     }
 }
 
@@ -107,7 +128,13 @@ function _createToy() {
         let labelIdx = utilService.getRandomIntInclusive(0, labels.length - 1)
         newLables.push(labels[labelIdx])
     }
-    
+
+    const newMsgs = []
+    for (let i = 0; i < utilService.getRandomIntInclusive(0, labels.length - 1); i++) {
+        let labelIdx = utilService.getRandomIntInclusive(0, labels.length - 1)
+        newMsgs.push(utilService.makeLorem(4))
+    }
+
     return {
 
         _id: utilService.makeId(),
@@ -116,8 +143,9 @@ function _createToy() {
         labels: newLables,
         inStock: true,
         createdtAt: (Date.now() - utilService.getRandomIntInclusive(0, 315162504000)),
-        toyImgIdx:utilService.getRandomIntInclusive(1,7)
-        
+        toyImgIdx: utilService.getRandomIntInclusive(1, 7),
+        msgs:newMsgs
+
     }
 }
 function _createToys() {

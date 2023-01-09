@@ -15,3 +15,7 @@
     gap: 20px;
     align-items: center;
 }
+
+.multi-select{
+    width: 500px;
+}
