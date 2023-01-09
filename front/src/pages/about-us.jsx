@@ -1,6 +1,6 @@
 
 export function AboutUs(){
-    <section className="about">
+    return <section className="about">
         about us asjDHASdhdhdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhas
     </section>
 }

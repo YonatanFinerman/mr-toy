@@ -13,7 +13,8 @@ export const toyService = {
     getById,
     save,
     remove,
-    getEmptyToy
+    getEmptyToy,
+    getDefaultFilter
 
 }
 
@@ -44,12 +45,31 @@ _createToys()
 //         })
 // }
 
-function query() {
-    console.log('func')
-    // return axios.get(BASE_URL).then(res => res.data)
+
+function query(filterBy = getDefaultFilter()) {
     return storageService.query(TOY_STORAGE_KEY)
+        .then(toys => {
+            if (filterBy.txt) {
+                const regex = new RegExp(filterBy.txt, 'i')
+                toys = toys.filter(toy => regex.test(toy.name))
+            }
+            if (filterBy.maxPrice) {
+                toys = toys.filter(toy => toy.price <= filterBy.maxPrice)
+            }
+            return toys
+        })
+}
+
+// function query() {
+    
+//     // return axios.get(BASE_URL).then(res => res.data)
+//     return storageService.query(TOY_STORAGE_KEY)
 
 
+// }
+
+function getDefaultFilter() {
+    return { txt: '', maxPrice: 0 }
 }
 
 
@@ -87,6 +107,7 @@ function _createToy() {
         let labelIdx = utilService.getRandomIntInclusive(0, labels.length - 1)
         newLables.push(labels[labelIdx])
     }
+    
     return {
 
         _id: utilService.makeId(),
@@ -95,6 +116,8 @@ function _createToy() {
         labels: newLables,
         inStock: true,
         createdtAt: (Date.now() - utilService.getRandomIntInclusive(0, 315162504000)),
+        toyImgIdx:utilService.getRandomIntInclusive(1,7)
+        
     }
 }
 function _createToys() {

@@ -1,53 +1,56 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
+import { loadToys,removeToy } from "../store/actions/toy.action.js"
 import { toyService } from "../services/toy.service.js"
-import { loadToys } from "../store/actions/toy.action.js"
+
+import { ToyList } from "../cmps/toy-list.jsx"
+import { ToyFilter } from "../cmps/toy-filter.jsx"
 
 
 export function ToyIndex() {
 
+    // const dispatch = useDispatch()
      const toys = useSelector((storeState) => storeState.toyModule.toys)
 
     useEffect(() => {
         onLoadToys()
     }, [])
 
-    function onLoadToys() {
-        loadToys()
+    function onLoadToys(filterBy) {
+        loadToys(filterBy)
             .then(() => {
                 // showSuccessMsg('Cars loaded')
-                console.log(toys,'new toys')
+                
             })
             .catch(err => {
                 // showErrorMsg('Cannot load cars')
             })
     }
 
+    function OnDeleteToy(ev,id){
+        ev.stopPropagation()
+        removeToy(id)
+        .then(() => {
+            // showSuccessMsg('Cars loaded')
+            
+        })
+        .catch(err => {
+            // showErrorMsg('Cannot load cars')
+        })
+    }
 
+    function setFilter(filterBy) {
+        console.log('setFilter', filterBy)
+        onLoadToys(filterBy)
 
-    // const isLoading = useSelector((storeState) => storeState.carModule.isLoading)
-    // const shoppingCart = useSelector((storeState) => storeState.carModule.shoppingCart)
-    // // const [cars, setCars] = useState([])
-    // // const [cart, setCart] = useState([])
+    }
 
-    // const dispatch = useDispatch()
-
-    // useEffect(() => {
-    //     onLoadCars()
-    // }, [])
-
-    // function onLoadCars(filterBy) {
-    //     loadCars(filterBy)
-    //         .then(() => {
-    //             // showSuccessMsg('Cars loaded')
-    //         })
-    //         .catch(err => {
-    //             showErrorMsg('Cannot load cars')
-    //         })
-    // }
-
-
-
-    return <section>index</section>
+       return <section>
+                <div>
+                    <ToyFilter onSetFilter={setFilter}/>
+                </div>
+             <ToyList toys={toys} OnDeleteToy={OnDeleteToy}/>
+       
+    </section>
 }

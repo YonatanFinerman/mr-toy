@@ -13,6 +13,7 @@
 
 
 export const SET_TOYS = 'SET_TOYS'
+export const REMOVE_TOY = 'REMOVE_TOY'
 
 
 
@@ -39,6 +40,9 @@ export function toyReducer(state = initialState, action) {
         // case SET_IS_LOADING:
         //     return { ...state, isLoading: action.isLoading }
 
+        case REMOVE_TOY:
+            toys = state.toys.filter(toy => toy._id !== action.toyId)
+            return { ...state, toys}
         // case REMOVE_CAR:
         //     lastRemovedCar = state.cars.find(c => c._id === action.carId)
         //     cars = state.cars.filter(c => c._id !== action.carId)

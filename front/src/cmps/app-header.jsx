@@ -14,7 +14,7 @@ export function AppHeader() {
  
 
     return (
-        <header className="app-header full main-layout">
+        <header className="app-header full ">
             <h1>My App</h1>
 
             <nav>
