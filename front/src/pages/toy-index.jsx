@@ -42,15 +42,15 @@ export function ToyIndex() {
     }
 
     function setFilter(filterBy) {
-        console.log('setFilter', filterBy)
+       
         onLoadToys(filterBy)
 
     }
 
     
 
-       return <section>
-                <div>
+       return <section className=" main-layout full " >
+                <div className="filter-cont full">
                     <ToyFilter onSetFilter={setFilter}/>
                 </div>
              <ToyList toys={toys} OnDeleteToy={OnDeleteToy}/>

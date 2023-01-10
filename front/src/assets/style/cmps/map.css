@@ -1,0 +1,10 @@
+
+.locations-cont{
+    display: flex;
+    gap: 10px;
+    
+}
+.locations-cont h3{
+    color: var(--clr1);
+
+}

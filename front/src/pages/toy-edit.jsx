@@ -6,6 +6,7 @@ import { useNavigate , useParams, Link} from "react-router-dom"
 
 import { toyService } from "../services/toy.service.js"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { MultiSelect } from "../cmps/multi-select.jsx"
 
 export function ToyEdit() {
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
@@ -66,6 +67,10 @@ export function ToyEdit() {
                 value={toyToEdit.price}
                 onChange={handleChange}
             />
+
+            <MultiSelect setToyToEdit={setToyToEdit} toyToEdit={toyToEdit}/>
+
+            
 
             <div>
                 <button>{toyToEdit._id ? 'Save' : 'Add'}</button>

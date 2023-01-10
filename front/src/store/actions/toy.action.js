@@ -4,6 +4,9 @@ import { store } from '../store.js'
 import { SET_TOYS,REMOVE_TOY } from '../reducers/toy.reducer.js'
 
 export function loadToys(filterBy) {
+
+    console.log('from actions',filterBy)
+    
     // store.dispatch({ type: SET_IS_LOADING, isLoading: true })
     return toyService.query(filterBy)
         .then((toys) => {

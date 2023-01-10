@@ -14,11 +14,44 @@ export const toyService = {
     save,
     remove,
     getEmptyToy,
-    getDefaultFilter
+    getDefaultFilter,
+    getLabels,
+    getLabelAvgPrice,
+    getLabelStockPrec
 
 }
 
 _createToys()
+
+function getLabelAvgPrice(label,toys){
+
+     toys=toys.filter(toy=>toy.labels.includes(label))
+      let totalPrice = toys.reduce((acc,toy)=>{
+            return acc+=toy.price
+
+        },0)
+        const avrPrice = totalPrice/toys.length
+        return avrPrice
+        
+   
+}
+function getLabelStockPrec(label,toys){
+
+     toys=toys.filter(toy=>toy.labels.includes(label))
+      let totalprec = toys.reduce((acc,toy)=>{
+         if(toy.inStock){
+
+             return acc+=1
+         }
+
+        },0)
+        const avrPrec =((totalprec/toys.length)*100).toFixed(2)
+        return avrPrec
+        
+   
+}
+
+
 
 
 // function query(filterBy) {
@@ -45,8 +78,13 @@ _createToys()
 //         })
 // }
 
+function getLabels(){
+    return ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
+}
 
 function query(filterBy = getDefaultFilter()) {
+    
+    console.log('filterr?????????????????????????????????????????????????????????????',filterBy,'filterr')
     return storageService.query(TOY_STORAGE_KEY)
         .then(toys => {
             if (filterBy.sortBy === "time") {
@@ -58,6 +96,20 @@ function query(filterBy = getDefaultFilter()) {
 
             if (filterBy.sortBy === "name") {
                 toys = toys.sort((a, b) => a.name.localeCompare(b.name))
+            }
+            if (filterBy.labels && filterBy.labels.length){
+                // console.log(filterBy.labels,'works')
+                // filterBy.labels.forEach(label=>{
+                //   toys =  toys.filter(toy=>toy.labels.includes(label))
+                // })
+               
+                toys = toys.filter(toy=>{
+                    filterBy.labels.forEach(label=>{
+                        if(toy.labels.includes(label)){
+                            return toy
+                        }
+                    })
+                })
             }
             
             if (filterBy.inStock) {
@@ -84,7 +136,7 @@ function query(filterBy = getDefaultFilter()) {
 // }
 
 function getDefaultFilter() {
-    return { txt: '', maxPrice: 500, sortBy: '', inStock: false }
+    return { txt: '', maxPrice: 500, sortBy: '', inStock: false,labels:[] }
 }
 
 

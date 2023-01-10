@@ -10,12 +10,17 @@
 
 /* Views */
 @import "cmps/views/toy-index.css";
+@import "cmps/views/about.css";
 /* Components */
 
 @import "cmps/app-header.css";
 @import "cmps/toy-list.css";
 @import "cmps/toy-preview.css";
 @import "cmps/toy-filter.css";
+@import "cmps/map.css";
+@import "cmps/charts.css";
+
+
 /* @import "cmps/app-header.css";
 @import "cmps/toggle-btn.css";
 @import "cmps/user-msg.css";

@@ -1,6 +1,9 @@
+import { GoogleMap } from "../cmps/google-map"
 
-export function AboutUs(){
+export function AboutUs() {
     return <section className="about">
         about us asjDHASdhdhdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhasdhas
+        <  GoogleMap />
     </section>
 }
+
