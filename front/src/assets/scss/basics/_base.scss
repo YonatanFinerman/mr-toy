@@ -1,0 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+}
+
+body {
+    margin: 0;
+}
+
+img {
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+}
+
+h1 {
+
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+  }
+  a:hover {
+    text-decoration: underline;
+    color: var(--clr2bg)
+  }
+
+.btn {
+    @include blockBtn( $color: $clr4);
+
+    @include for-narrow-layout {
+        background-color: $clr2;
+    }
+    
+    @include for-normal-layout {
+        background-color: $clr3;
+    }
+
+    @include for-wide-layout {
+        background-color: $clr4;
+    }
+    
+    &-round {
+        border-radius: 2em;
+    }
+}
+

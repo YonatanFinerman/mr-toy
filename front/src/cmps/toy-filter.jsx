@@ -40,21 +40,28 @@ export function ToyFilter({ onSetFilter }) {
 
     return <section className="toy-filter full">
 
-        <input type="text"
 
-            name="txt"
-            placeholder="Search..."
-            className="toy-search-input"
-            value={filterByToEdit.txt}
-            onChange={handleChange}
-            ref={elInputRef}
-        />
+        <div className="filter-cont">
+            <input type="text"
 
-        <MultiSelect setFilterByToEdit={setFilterByToEdit} />
+                name="txt"
+                placeholder="Search..."
+                className="toy-search-input"
+                value={filterByToEdit.txt}
+                onChange={handleChange}
+                ref={elInputRef}
+            />
+
+            <MultiSelect setFilterByToEdit={setFilterByToEdit} />
+        </div>
+
+        <div className="more-options">
+            <Link to={`/toy/edit/`}><button className="add-Toy-btn">Add Toy</button></Link>
 
         <select
             name="sortBy"
             onChange={handleChange}
+            className="sort-select"
             id="">
             <option value="">Sort Toys</option>
             <option value="time">Latest Release</option>
@@ -62,28 +69,12 @@ export function ToyFilter({ onSetFilter }) {
             <option value="price">Lowest Price</option>
         </select>
 
-        {/* <Select 
-            name="sortBy"
-            onChange={handleChange}
-            isMulti
-            className="multi-select"
-             id="">
-                <option value="">Sort 321oys</option>
-                <option value="">Latest dadRelease</option>
-                <option value="">Toy sdad</option>
-                <option value="">Lowedaasdst Price</option>
-            </Select> */}
-
-        <input
-            type="checkbox"
-            name="inStock"
-            onChange={handleChange}
-        />
-
-        <div className="more-options">
 
 
-            <Link to={`/toy/edit/`}><button className="add-Toy-btn">Add Toy</button></Link>
+
+        
+
+
             <form onSubmit={onSubmitFilter} className='filter-form'>
                 <input type="range"
                     title={"max price: " + filterByToEdit.maxPrice}
@@ -91,6 +82,7 @@ export function ToyFilter({ onSetFilter }) {
                     max={500}
                     id="maxPrice"
                     name="maxPrice"
+                    className="price-filter"
                     value={filterByToEdit.maxPrice}
                     placeholder="By max price"
 
@@ -98,6 +90,11 @@ export function ToyFilter({ onSetFilter }) {
                 />
 
             </form>
+        <input
+            type="checkbox"
+            name="inStock"
+            onChange={handleChange}
+        />
         </div>
 
     </section>

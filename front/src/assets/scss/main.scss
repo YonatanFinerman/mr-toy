@@ -1,0 +1,23 @@
+// body {
+//     background-color: gold;
+// }
+// SETUP
+@import 'setup/typography';
+@import 'setup/functions';
+@import 'setup/variables';
+@import 'setup/mixins';
+
+// BASICS
+@import 'basics/helpers';
+@import 'basics/base';
+@import 'basics/layout';
+
+// COMPONENTS
+@import 'components/app-header';
+@import 'components/toy-filter';
+@import 'components/toy-list';
+@import 'components/toy-preview';
+
+//VIEWS
+@import 'views/home-page';
+@import 'views/about-page';

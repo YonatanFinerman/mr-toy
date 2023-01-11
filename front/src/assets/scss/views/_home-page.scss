@@ -1,0 +1,33 @@
+.homepage-img{
+    cursor: pointer;
+}
+
+.charts-cont{
+    // width: '100vw', margin: 'auto', display: 'flex', justifyContent: 'center', gap: '50px'
+  
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+
+}
+
+
+.charts-section-title{
+    text-align: center;
+    font-weight: lighter;
+    font-size: 2.5em;
+    margin-bottom: 0px;
+    color: $clr3;
+}
+
+.chart{
+    width: 40vw;
+}
+
+.chart-title{
+    width: 40vw;
+    text-align: center;
+    color: $clr3;
+    font-weight: lighter;
+    font-size: 2em;
+}

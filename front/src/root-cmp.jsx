@@ -1,5 +1,5 @@
 
-import './assets/style/main.css'
+
 
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { Provider } from 'react-redux';
@@ -10,7 +10,7 @@ import { HomePage } from './pages/home-page.jsx';
 import { ToyIndex } from './pages/toy-index.jsx';
 import { ToyDetails } from './pages/toy.details';
 import { ToyEdit } from './pages/toy-edit';
-import { Dashboard } from './pages/dashboard';
+// import { Dashboard } from './pages/dashboard';
 
 
 // import { AppFooter } from './cmps/app-footer';
@@ -31,7 +31,7 @@ export default function App() {
                             <Route element={<HomePage />} path="/" />
                             <Route element={<AboutUs/>}path="/about" />
                             <Route element={<ToyIndex />} path="/toy" />
-                            <Route element={<Dashboard />} path="/dashboard" />
+                            {/* <Route element={<Dashboard />} path="/dashboard" /> */}
                             <Route element={<ToyEdit />} path="/toy/edit" />
                             <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
                             <Route element={<ToyDetails />} path="/toy/:toyId" />

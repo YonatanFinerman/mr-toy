@@ -1,0 +1,29 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:  1rem calc((100% - $break-wide) / 2) 0px;
+    color: $clr5;
+    background-color: $clr2;
+    font-weight: bold;
+    
+    nav {
+        display: flex;
+        gap: 15px;
+        font-size: 1.5em;
+
+        .active {
+            color: $clr7;
+            // color: complement($clr2);
+        }
+    }
+
+    .logo{
+        width: 200px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+
+}
+
+

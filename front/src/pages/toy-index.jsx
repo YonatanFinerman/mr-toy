@@ -13,6 +13,7 @@ export function ToyIndex() {
 
     // const dispatch = useDispatch()
      const toys = useSelector((storeState) => storeState.toyModule.toys)
+     
 
     useEffect(() => {
         onLoadToys()

@@ -1,0 +1,41 @@
+.about-title{
+    font-size: 1.8rem;
+    color: $clr3;
+    padding: 47px 0 ;
+    margin: auto;
+    margin-bottom: 55px;
+    font-weight: bold;
+    width: 250px;
+   
+    border-bottom: 1px solid $clr3;
+}
+
+.main-about-info{
+    display: flex;
+    gap: 150px;
+    .about-img {
+        // width: 550px;
+        // height: 570px;
+        // flex-basis: 50%;
+        width: 50%;
+
+    }
+    .about-txt{
+        display: flex;
+        width: 50%;
+        // flex-basis: 50%;
+        text-align: center;
+        color: $clr3;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        h3{
+            font-size: 1.8rem;
+        }
+
+        p{
+            font-size: 1.2rem;
+        }
+    }
+}

@@ -11,16 +11,17 @@ export function AppHeader() {
 
 
 
- 
+    // <img className="toy-preview-img" src={require(`../assets/img/${toy.toyImgIdx}.jpg`)} />
 
     return (
         <header className="app-header full ">
-            <h1>My App</h1>
+            <img className="logo" src={require(`../assets/img/logo5.PNG`)} />
+            {/* <h1 className='logo'>My App</h1> */}
 
             <nav>
                 <NavLink to="/">Home</NavLink> |
                 <NavLink to="/toy">Toys</NavLink> |
-                <NavLink to="/dashboard">Dashboard</NavLink> |
+                {/* <NavLink to="/dashboard">Dashboard</NavLink> | */}
                 <NavLink to="/about">About</NavLink> 
                 
              

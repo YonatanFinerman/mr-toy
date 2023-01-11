@@ -112,15 +112,15 @@ export function DataChart({ toys }) {
         ],
     };
     return (
-        <div style={{ width: '80%', margin: 'auto', display: 'flex', justifyContent: 'center', gap: '50px' }}>
+        <div className='charts-cont full' style={{ width: '100vw', margin: 'auto', display: 'flex', justifyContent: 'center', gap: '50px' }}>
             <div className='chart'>
-                <h2>Average price for toy Category</h2>
+                <h2 className='chart-title'>Average price for toy Category</h2>
                 < Doughnut data={dataPrice} />
             </div>
 
             <div className='chart'>
 
-            <h2>Precentage of labeld items stock</h2>
+            <h2 className='chart-title'>Precentage of labeld items stock</h2>
             < Doughnut data={dataStock} />
             </div>
         </div>
